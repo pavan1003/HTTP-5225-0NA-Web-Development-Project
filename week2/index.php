@@ -9,10 +9,10 @@
 
 <body>
     <?php
-    
+    // PHP portion Starts here
     $fname = "Pavan";
     $lname = "Mistry";
-    echo '<h1>Welcome to HTTP 5225 '. $fname . ' ' . $lname . '</h1>
+    echo '<h1>Welcome to HTTP 5225 ' . $fname . ' ' . $lname . '</h1>
     <p>We will learn PHP in this class, (maybe?)</p>
     <p>Things we will learn in this class: </p>
     <ul>
@@ -22,9 +22,11 @@
     </ul>';
 
     ?>
-    <?php echo '<img src="https://placehold.co/600x400" alt="Placeholder image">'; ?>
-
-    <h1>Welcome to HTTP 5225</h1>
+    <?php
+    echo '<img src="https://placehold.co/600x400" alt="Placeholder image">';
+    //php ends here
+    ?>
+    <h1>Welcome to HTTP 5225 Non dynamic part</h1>
     <p>We will learn PHP in this class, (maybe?)</p>
     <p>Things we will learn in this class: </p>
     <ul>
@@ -33,7 +35,6 @@
         <li>LARAVEL</li>
     </ul>
     <img src="https://placehold.co/600x400" alt="Placeholder image">
-
 </body>
 
 </html>
