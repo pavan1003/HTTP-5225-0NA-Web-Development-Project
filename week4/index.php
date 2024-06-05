@@ -10,45 +10,70 @@
 </head>
 
 <body>
-    <div class="container m-5">
+    <h1 class="display-1">Week 4</h1>
+        <div class="mx-5 d-flex justify-content-center">
+            <div class="row">
+                <h2 class="display-2">for() loop</h1>
+                    <?php
 
-        <div class="row">
+                    function getUsers()
+                    {
+                        $usersUrl = "https://jsonplaceholder.typicode.com/users";
+                        // $usersUrl = "./users.json";
+                        $usersData = file_get_contents($usersUrl);
+                        return json_decode($usersData, true);
+                    }
 
-            <?php
-
-            function getUsers()
-            {
-                $usersUrl = "https://jsonplaceholder.typicode.com/users";
-                // $usersUrl = "./users.json";
-                $usersData = file_get_contents($usersUrl);
-                return json_decode($usersData, true);
-            }
-
-            $fetchUsers = getUsers();
-            if (!empty($fetchUsers)) {
-                for ($i = 0; $i < count($fetchUsers); $i++) {
-                    // echo $fetchUsers[$i]["name"];
-                    echo
-                    '<div class="col-md-3 p-2">
+                    $fetchUsers = getUsers();
+                    if (!empty($fetchUsers)) {
+                        for ($i = 0; $i < count($fetchUsers); $i++) {
+                            // echo $fetchUsers[$i]["name"];
+                            echo
+                            '<div class="col-md-3 p-2">
                                 <div class="card">
                                     <div class="card-body">
                                         <h5 class="card-title">' . $fetchUsers[$i]["name"] . '</h5>
                                         <p class="card-text fst-italic"> Email: <a href="mailto:' . $fetchUsers[$i]["email"] . '">' . $fetchUsers[$i]["email"] . '</a></p>
-                                        <p class="card-text"> Address: ' . $fetchUsers[$i]["address"]["street"] . ' ' . $fetchUsers[$i]["address"]["suite"] . ' ' . $fetchUsers[$i]["address"]["city"] . ' ' . $fetchUsers[$i]["address"]["zipcode"] . '</p>
+                                        <p class="card-text"> Address: ' . $fetchUsers[$i]["address"]["street"] . ', ' . $fetchUsers[$i]["address"]["suite"] . ', ' . $fetchUsers[$i]["address"]["city"] . ', ' . $fetchUsers[$i]["address"]["zipcode"] . '</p>
                                         <p class="card-text"> Phone: <a href="tel:' . $fetchUsers[$i]["phone"] . '">' . $fetchUsers[$i]["phone"] . '</a></p>
                                         <p class="card-text"> Company Name: ' . $fetchUsers[$i]["company"]["name"] . ' </p>
                                         <a href="' . $fetchUsers[$i]["website"] . '" class="btn btn-primary">' . $fetchUsers[$i]["website"] . '</a>
                                     </div>
                                 </div>
                             </div>';
-                    echo "<br>";
-                }
-            }
-            ?>
+                            echo "<br>";
+                        }
+                    }
+                    ?>
+            </div>
         </div>
-    </div>
+        <div class="mx-5 d-flex justify-content-center">
+            <div class="row">
+                <h2 class="display-2">foreach() loop</h1>
+                    <?php
+                    if (!empty($fetchUsers)) {
+                        foreach ($fetchUsers as $user) {
+                            echo
+                            '<div class="col-md-4 p-2">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">' . $user["name"] . '</h5>
+                                    <p class="card-text fst-italic"> Email: <a href="mailto:' . $user["email"] . '">' . $user["email"] . '</a></p>
+                                    <p class="card-text"> Address: ' . $user["address"]["street"] . ', ' . $user["address"]["suite"] . ', ' . $user["address"]["city"] . ', ' . $user["address"]["zipcode"] . '</p>
+                                    <p class="card-text"> Phone: <a href="tel:' . $user["phone"] . '">' . $user["phone"] . '</a></p>
+                                    <p class="card-text"> Company Name: ' . $user["company"]["name"] . ' </p>
+                                    <a href="' . $user["website"] . '" class="btn btn-primary">' . $user["website"] . '</a>
+                                </div>
+                            </div>
+                        </div>';
+                            echo "<br>";
+                        }
+                    }
+                    ?>
 
-    </div>
+            </div>
+        </div>
+
 </body>
 
 </html>

@@ -10,45 +10,41 @@
 </head>
 
 <body>
-    <div class="container m-5">
-
+    <h1 class="display-1">Week 5</h1>
+    <div class="mx-5 d-flex justify-content-center">
         <div class="row">
+            <h2 class="display-2">Colors from Database</h1>
+                <?php
 
-            <?php
-
-            function getUsers()
-            {
-                $usersUrl = "https://jsonplaceholder.typicode.com/users";
-                // $usersUrl = "./users.json";
-                $usersData = file_get_contents($usersUrl);
-                return json_decode($usersData, true);
-            }
-
-            $fetchUsers = getUsers();
-            if (!empty($fetchUsers)) {
-                for ($i = 0; $i < count($fetchUsers); $i++) {
-                    // echo $fetchUsers[$i]["name"];
-                    echo
-                    '<div class="col-md-3 p-2">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="card-title">' . $fetchUsers[$i]["name"] . '</h5>
-                                        <p class="card-text fst-italic"> Email: <a href="mailto:' . $fetchUsers[$i]["email"] . '">' . $fetchUsers[$i]["email"] . '</a></p>
-                                        <p class="card-text"> Address: ' . $fetchUsers[$i]["address"]["street"] . ' ' . $fetchUsers[$i]["address"]["suite"] . ' ' . $fetchUsers[$i]["address"]["city"] . ' ' . $fetchUsers[$i]["address"]["zipcode"] . '</p>
-                                        <p class="card-text"> Phone: <a href="tel:' . $fetchUsers[$i]["phone"] . '">' . $fetchUsers[$i]["phone"] . '</a></p>
-                                        <p class="card-text"> Company Name: ' . $fetchUsers[$i]["company"]["name"] . ' </p>
-                                        <a href="' . $fetchUsers[$i]["website"] . '" class="btn btn-primary">' . $fetchUsers[$i]["website"] . '</a>
-                                    </div>
-                                </div>
-                            </div>';
-                    echo "<br>";
+                $connect = mysqli_connect('localhost', 'root', '', 'Http5225Week5-0NA');
+                if (!$connect) {
+                    echo 'Error Code: ' . mysqli_connect_errno();
+                    echo 'Error Code: ' . mysqli_connect_error();
                 }
-            }
-            ?>
+                $query = 'SELECT `Name`,`Hex` FROM colors';
+                $result = mysqli_query($connect, $query);
+                if (!$result) {
+                    echo 'Error Message ' . mysqli_error($connect);
+                    exit;
+                } else {
+                    $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+                    foreach ($rows as $row) {
+                        echo
+                        '<div class="col-md-4 mb-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">' . $row["Name"] . '</h5>
+                                    <p class="card-text">Hex: ' . $row["Hex"] . '</p>
+                                    <div style="width: 100%; height: 50px; background-color: ' . $row["Hex"] . '"></div>
+                                </div>
+                            </div>
+                        </div>';
+                    }
+                }
+                ?>
         </div>
     </div>
 
-    </div>
 </body>
 
 </html>
