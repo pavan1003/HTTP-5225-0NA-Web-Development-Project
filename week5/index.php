@@ -22,20 +22,19 @@
                     echo 'Error Code: ' . mysqli_connect_error();
                 }
                 $query = 'SELECT `Name`,`Hex` FROM colors';
-                $result = mysqli_query($connect, $query);
-                if (!$result) {
+                $results = mysqli_query($connect, $query);
+                if (!$results) {
                     echo 'Error Message ' . mysqli_error($connect);
                     exit;
                 } else {
-                    $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
-                    foreach ($rows as $row) {
+                    foreach ($results as $result) {
                         echo
                         '<div class="col-md-4 mb-3">
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title">' . $row["Name"] . '</h5>
-                                    <p class="card-text">Hex: ' . $row["Hex"] . '</p>
-                                    <div style="width: 100%; height: 50px; background-color: ' . $row["Hex"] . '"></div>
+                                    <h5 class="card-title">' . $result["Name"] . '</h5>
+                                    <p class="card-text">Hex: ' . $result["Hex"] . '</p>
+                                    <div style="width: 100%; height: 50px; background-color: ' . $result["Hex"] . '"></div>
                                 </div>
                             </div>
                         </div>';
