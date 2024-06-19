@@ -9,8 +9,12 @@ if (isset($_POST['addSchool'])) {
 
     // Connection string
     include('../reusable/conn.php');
-    $query = "INSERT INTO schools (`School Name`, `School Level`, `Phone`, `Email`) VALUES ('$schoolName', '$schoolLevel', '$phone', '$email')";
-
+    $query = "INSERT INTO schools (`School Name`, `School Level`, `Phone`, `Email`) VALUES (
+        '" . mysqli_real_escape_string($connect, $schoolName) . "',
+        '" . mysqli_real_escape_string($connect, $schoolLevel) . "',
+        '" . mysqli_real_escape_string($connect, $phone) . "',
+        '" . mysqli_real_escape_string($connect, $email) . "')";
+        
     $school = mysqli_query($connect, $query);
 
     if ($school) {

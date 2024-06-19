@@ -1,5 +1,4 @@
 <?php
-include('functions.php');
 require('../reusable/conn.php');
 if (isset($_GET['deleteSchool'])) {
     $id = $_GET['id'];
