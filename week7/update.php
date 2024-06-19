@@ -1,7 +1,7 @@
 <?php
 include('reusable/conn.php');
 $id = $_GET['id'];
-$query = "SELECT * FROM schools WHERE `id` = '$id'";
+$query = "SELECT * FROM schools WHERE `id` = '" . mysqli_real_escape_string($connect, $id) . "'";
 $school = mysqli_query($connect, $query);
 $result = $school->fetch_assoc();
 ?>

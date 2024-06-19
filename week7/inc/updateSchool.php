@@ -6,8 +6,13 @@ if (isset($_POST['updateSchool'])) {
     $schoolLevel = $_POST['schoolLevel'];
     $phone = $_POST['phone'];
     $email = $_POST['email'];
-    
-    $query = "UPDATE `schools` SET `School Name`='$schoolName',`School Level`='$schoolLevel',`Phone`='$phone',`Email`='$email' WHERE `id`='$id'";
+
+    $query = "UPDATE `schools` SET 
+    `School Name`='" . mysqli_real_escape_string($connect, $schoolName) . "',
+    `School Level`='" . mysqli_real_escape_string($connect, $schoolLevel) . "',
+    `Phone`='" . mysqli_real_escape_string($connect, $phone) . "',
+    `Email`='" . mysqli_real_escape_string($connect, $email) . "' WHERE 
+    `id`='" . mysqli_real_escape_string($connect, $id) . "'";
 
     $school = mysqli_query($connect, $query);
     if ($school) {
