@@ -37,34 +37,35 @@
                 $schools = mysqli_query($connect, $query);
 
                 foreach ($schools as $school) {
-                    echo '<div class="col-md-4 mt-2 mb-2">
+                    echo '
+                    <div class="col-md-4 mt-2 mb-2">
                         <div class="card ">
-                        <div class="card-body">
-                            <h5 class="card-title">' . $school['School Name'] . '</h5>
-                            <p class="card-text">' . $school['School Level'] . '</p>
-                            <span class="badge bg-secondary">' . $school['Phone'] . '</span>
-                            <span class="badge bg-info">' . $school['Email'] . '</span>
-                        </div>
-                        <div class="card-footer">
-                            <div class="row">
-                            <div class="col">
-                                <form action="update.php" method="GET">
-                                <input type="hidden" name="id" value="' . $school['id'] . '">
-                                <button type="submit" class="btn btn-sm btn-primary" name="updateSchool">
-                                    Update
-                                </button>
-                                </form>
+                            <div class="card-body">
+                                <h5 class="card-title">' . $school['School Name'] . '</h5>
+                                <p class="card-text">' . $school['School Level'] . '</p>
+                                <span class="badge bg-secondary">' . $school['Phone'] . '</span>
+                                <span class="badge bg-info">' . $school['Email'] . '</span>
                             </div>
-                            <div class="col text-end">
-                                <form action="inc/deleteSchool.php" method="GET">
-                                <input type="hidden" name="id" value="' . $school['id'] . '">
-                                <button type="submit" name="deleteSchool" class="btn btn-sm btn-danger">
-                                    Delete
-                                </button>
-                                </form>
+                            <div class="card-footer">
+                                <div class="row">
+                                    <div class="col">
+                                        <form action="update.php" method="GET">
+                                            <input type="hidden" name="id" value="' . $school['id'] . '">
+                                            <button type="submit" class="btn btn-sm btn-primary" name="updateSchool">
+                                                Update
+                                            </button>
+                                        </form>
+                                    </div>
+                                    <div class="col text-end">
+                                        <form action="inc/deleteSchool.php" method="GET">
+                                            <input type="hidden" name="id" value="' . $school['id'] . '">
+                                            <button type="submit" name="deleteSchool" class="btn btn-sm btn-danger">
+                                                Delete
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
-                            </div>
-                        </div>
                         </div>
                     </div>';
                 }
