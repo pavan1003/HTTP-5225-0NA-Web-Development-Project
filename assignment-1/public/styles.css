@@ -1,0 +1,20 @@
+.card {
+  max-width: 420px;
+}
+
+@media (max-width: 575.5px) {
+  .card {
+    margin: 0px !important;
+    margin-bottom: .5rem !important;
+  }
+
+  .rounded-start-5 {
+    border-top-right-radius: var(--bs-border-radius-xxl) !important;
+    border-bottom-left-radius: 0px !important;
+  }
+
+  .rounded-end-5 {
+    border-bottom-left-radius: var(--bs-border-radius-xxl) !important;
+    border-top-right-radius: 0px !important;
+  }
+}

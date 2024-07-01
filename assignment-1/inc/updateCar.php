@@ -1,7 +1,16 @@
 <?php
+// Include the functions.php file
 include('functions.php');
+
+// Print the contents of the $_POST array (for debugging purposes)
 print_r($_POST);
+
+// Check if the form has been submitted with the 'updateCar' button
 if (isset($_POST['updateCar'])) {
+    // Print the POST array for debugging purposes (commented out)
+    // print_r($_POST);
+
+    // Retrieve the form data
     $id = $_POST['id'];
     $carNameModel = $_POST['carNameModel'];
     $modelType = $_POST['modelType'];
@@ -13,10 +22,11 @@ if (isset($_POST['updateCar'])) {
     $speed = $_POST['speed'];
     $handling = $_POST['handling'];
     $imageUrl = $_POST['imageUrl'];
-    // print_r($_POST);
 
-    // Connection string
+    // Include the connection string
     include('../reusable/conn.php');
+
+    // Construct the SQL query to update the car record
     $query = "UPDATE `forza_horizon_cars` SET 
     `Name_and_model`='" . mysqli_real_escape_string($connect, $carNameModel) . "',
     `Model_type`='" . mysqli_real_escape_string($connect, $modelType) . "',
@@ -30,13 +40,21 @@ if (isset($_POST['updateCar'])) {
     `Car_Image`='" . mysqli_real_escape_string($connect, $imageUrl) . "' WHERE 
     `id`='" . mysqli_real_escape_string($connect, $id) . "'";
 
+    // Execute the SQL query
     $car = mysqli_query($connect, $query);
+
+    // Check if the query was successful
     if ($car) {
-        set_message('Car was updated succesfully!', 'success');
+        // Set a success message
+        set_message('Car was updated successfully!', 'success');
+        // Redirect to the index page
         header("Location: ../index.php");
     } else {
+        // Output an error message if the query failed
         echo "Failed: " . mysqli_error($connect);
     }
 } else {
+    // Output an error message if the form was not submitted correctly
     echo "You should not be here";
 }
+?>

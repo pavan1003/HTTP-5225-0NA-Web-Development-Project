@@ -1,4 +1,7 @@
-<?php include('reusable/conn.php'); ?>
+<?php
+// Include the database connection file
+include('reusable/conn.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,13 +9,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forza Horizon 5 Cars</title>
+    <!-- Favicon for the page taken from https://www.flaticon.com/free-icon/3d-car_10490228?term=car&page=3&position=67&origin=tag&related_id=10490228-->
     <link rel="icon" href="public/logo.png" type="image/gif">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
-</head>
+    <link rel="stylesheet" href="public/styles.css"></head>
 
 <body>
+    <!-- Include the navigation bar -->
     <?php include('reusable/nav.php'); ?>
     <div class="container-fluid">
         <div class="container">
@@ -29,6 +34,7 @@
             <div class="row">
                 <div class="col">
                     <?php
+                    // Include functions file and display any messages
                     include('inc/functions.php');
                     get_message();
                     ?>
@@ -36,16 +42,20 @@
             </div>
             <div class="row justify-content-center align-items-center" data-masonry='{"percentPosition": true }'>
                 <?php
+                // Query to fetch all cars from the database
                 $query = 'SELECT * FROM forza_horizon_cars';
                 $cars = mysqli_query($connect, $query);
+
+                // Loop through each car and display its details
                 foreach ($cars as $car) { ?>
-                    <div class="card m-2 p-0 rounded-5" style="max-width: 420px;">
+                    <div class="card m-2 p-0 rounded-5">
                         <div class="row g-0">
-                            <div class="col-md-4 d-flex align-items-center justify-content-center bg-light rounded-start-5">
-                                <img src="<?php echo str_replace('/side/', '/big/', $car['Car_Image']); ?>" class="img-fluid" alt="Image of <?php echo $car['Name_and_model']; ?>">
+                            <div class="col-md-4 col-sm-4 d-flex align-items-center justify-content-center bg-light rounded-start-5 border-mobile">
+                                <!-- Display the car image, replacing '/side/' with '/big/' in the URL to enhace its quality-->
+                                <img src="<?php echo str_replace('/side/', '/big/', $car['Car_Image']); ?>" class="img-fluid rounded-start-5" alt="Image of <?php echo $car['Name_and_model']; ?>">
                             </div>
-                            <div class="col-md-8">
-                                <div class="card-body bg-light rounded-end-5">
+                            <div class="col-md-8 col-sm-8">
+                                <div class="card-body bg-light rounded-end-5 border-mobile">
                                     <div class="card-text"><?php echo $car['Model_type']; ?></div>
                                     <h5 class="card-title"><?php echo $car['Name_and_model']; ?></h5>
                                     <div class="card-text"><strong>In Game Price:</strong> <?php echo $car['In_Game_Price']; ?></div>
@@ -55,22 +65,26 @@
                                     <ul class="list-unstyled mb-1">
                                         <li>Speed: <?php echo $car['speed']; ?>
                                             <div class="progress" aria-valuenow="<?php echo $car['speed']; ?>" aria-valuemin="0" aria-valuemax="10">
+                                                <!-- Display speed progress bar -->
                                                 <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" style="width: <?php echo ($car['speed'] / 10) * 100; ?>%;"></div>
                                             </div>
                                         </li>
                                         <li>Handling: <?php echo $car['handling']; ?>
                                             <div class="progress" aria-valuenow="<?php echo $car['handling']; ?>" aria-valuemin="0" aria-valuemax="10">
+                                                <!-- Display handling progress bar -->
                                                 <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" style="width: <?php echo ($car['handling'] / 10) * 100; ?>%;"></div>
                                             </div>
                                         </li>
                                         <li>Acceleration: <?php echo $car['acceleration']; ?>
                                             <div class="progress" aria-valuenow="<?php echo $car['acceleration']; ?>" aria-valuemin="0" aria-valuemax="10">
+                                                <!-- Display acceleration progress bar -->
                                                 <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" style="width: <?php echo ($car['acceleration'] / 10) * 100; ?>%;"></div>
                                             </div>
                                         </li>
                                     </ul>
                                     <div class="row mt-3">
-                                        <div class="col">
+                                        <div class="col-sm-6">
+                                            <!-- Form to update car details -->
                                             <form action="update.php" method="GET">
                                                 <input type="hidden" name="id" value="<?php echo $car['id']; ?>">
                                                 <button type="submit" class="btn btn-sm btn-outline-primary" name="updateCar">
@@ -78,7 +92,8 @@
                                                 </button>
                                             </form>
                                         </div>
-                                        <div class="col text-end">
+                                        <div class="col-sm-6 text-end">
+                                            <!-- Form to delete car -->
                                             <form action="inc/deleteCar.php" method="GET">
                                                 <input type="hidden" name="id" value="<?php echo $car['id']; ?>">
                                                 <button type="submit" name="deleteCar" class="btn btn-sm btn-outline-danger">
@@ -91,12 +106,12 @@
                             </div>
                         </div>
                     </div>
-                <?php } ?>
+                <?php } // End of foreach loop 
+                ?>
             </div>
 
         </div>
     </div>
-
 
 </body>
 
