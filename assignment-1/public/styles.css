@@ -1,7 +1,14 @@
+/* Table of Contents
+1. Card Styles
+2. Media Queries
+*/
+
+/* 1. Card Styles */
 .card {
   max-width: 420px;
 }
 
+/* 2. Media Queries */
 @media (max-width: 575.5px) {
   .card {
     margin: 0px !important;
