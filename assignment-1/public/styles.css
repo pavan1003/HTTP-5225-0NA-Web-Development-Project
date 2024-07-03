@@ -6,6 +6,17 @@
 /* 1. Card Styles */
 .card {
   max-width: 420px;
+  background: rgba(255, 255, 255, 0.70);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(7.1px)
+}
+
+.custom-bg {
+  background-image: url("./background.png");
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-attachment: fixed;
+  width: 100%;
 }
 
 /* 2. Media Queries */
@@ -13,6 +24,10 @@
   .card {
     margin: 0px !important;
     margin-bottom: .5rem !important;
+  }
+
+  .ps-2{
+    padding: 0 !important;
   }
 
   .rounded-start-5 {

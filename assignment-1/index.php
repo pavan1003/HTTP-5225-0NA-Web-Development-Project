@@ -14,22 +14,20 @@ include('reusable/conn.php');
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
-    <link rel="stylesheet" href="public/styles.css"></head>
+    <link rel="stylesheet" href="public/styles.css">
+</head>
 
 <body>
     <!-- Include the navigation bar -->
     <?php include('reusable/nav.php'); ?>
-    <div class="container-fluid">
+    <div class="container-fluid custom-bg">
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <h1 class="display-4 my-3">All Forza Horizon 5 Cars</h1>
+                    <h1 class="display-4 my-3 bg-light rounded-5 text-center">All Forza Horizon 5 Cars</h1>
                 </div>
             </div>
         </div>
-    </div>
-
-    <div class="container-fluid">
         <div class="container">
             <div class="row">
                 <div class="col">
@@ -50,12 +48,12 @@ include('reusable/conn.php');
                 foreach ($cars as $car) { ?>
                     <div class="card m-2 p-0 rounded-5">
                         <div class="row g-0">
-                            <div class="col-md-4 col-sm-4 d-flex align-items-center justify-content-center bg-light rounded-start-5 border-mobile">
+                            <div class="col-md-4 col-sm-4 d-flex align-items-center justify-content-center rounded-start-5">
                                 <!-- Display the car image, replacing '/side/' with '/big/' in the URL to enhace its quality-->
-                                <img src="<?php echo str_replace('/side/', '/big/', $car['Car_Image']); ?>" class="img-fluid rounded-start-5" alt="Image of <?php echo $car['Name_and_model']; ?>">
+                                <img src="<?php echo str_replace('/side/', '/big/', $car['Car_Image']); ?>" class="img-fluid rounded-5 ps-2" alt="Image of <?php echo $car['Name_and_model']; ?>">
                             </div>
                             <div class="col-md-8 col-sm-8">
-                                <div class="card-body bg-light rounded-end-5 border-mobile">
+                                <div class="card-body rounded-end-5">
                                     <div class="card-text"><?php echo $car['Model_type']; ?></div>
                                     <h5 class="card-title"><?php echo $car['Name_and_model']; ?></h5>
                                     <div class="card-text"><strong>In Game Price:</strong> <?php echo $car['In_Game_Price']; ?></div>

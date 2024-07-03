@@ -3,12 +3,10 @@
 include('functions.php');
 
 // Print the contents of the $_POST array (for debugging purposes)
-print_r($_POST);
+// print_r($_POST);
 
 // Check if the form has been submitted with the 'updateCar' button
 if (isset($_POST['updateCar'])) {
-    // Print the POST array for debugging purposes (commented out)
-    // print_r($_POST);
 
     // Retrieve the form data
     $id = $_POST['id'];
@@ -57,4 +55,3 @@ if (isset($_POST['updateCar'])) {
     // Output an error message if the form was not submitted correctly
     echo "You should not be here";
 }
-?>
