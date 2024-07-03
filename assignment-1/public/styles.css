@@ -13,6 +13,7 @@
 
 .custom-bg {
   background-image: url("./background.png");
+  /* Image taken from https://i.redd.it/89afwhtwnm671.png */
   background-repeat: no-repeat;
   background-position: top center;
   background-attachment: fixed;
